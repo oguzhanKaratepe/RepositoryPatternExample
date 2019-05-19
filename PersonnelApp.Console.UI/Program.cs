@@ -13,9 +13,12 @@ namespace PersonnelApp.Console.UI
         static void Main(string[] args)
         {
             UnitOfWork unitOfWork = new UnitOfWork(new PersonnelContext());
-            Personnel ahmet = new Personnel() {Name="ahmet" };
-            unitOfWork.PersonnelRepository.Add(ahmet);
+            
+            unitOfWork.PersonnelRepository.Add(new Personnel() { Name = "ahmet", LastName = "kara" });
+            unitOfWork.DepartmentRepository.Add(new Department() { Name = "Computer Sceience", CreateDate=DateTime.Now});
+
             unitOfWork.Complete();
+            unitOfWork.Dispose();
         }
     }
 }
